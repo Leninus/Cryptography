@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Cryptography",
+			"path": "../Encrypter/Cryptography"
+		},
+		{
+			"name": "Encrypter",
+			"path": "../Encrypter"
+		}
+	],
+	"settings": {}
+}

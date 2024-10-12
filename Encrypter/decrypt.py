@@ -19,8 +19,8 @@ def getKey():
         key = "0000"
     return key    
 
-def decrypt(text, key):
-    rand.seed(key)
+def decrypt(text, seed):
+    rand.seed(seed)
     end = []
     for key in text:
         key = ord(key)
