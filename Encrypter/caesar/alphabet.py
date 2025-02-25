@@ -1,4 +1,3 @@
-import alphabet as al
 lowercaseAlphabet = {
     "a":1,
     "b":2,
@@ -14,6 +13,34 @@ lowercaseAlphabet = {
     "l":12,
     "m":13,
     "n":14,
+    "o":15,
+    "p":16,
+    "q":17,
+    "r":18,
+    "s":19,
+    "t":20,
+    "u":21,
+    "v":22,
+    "w":23,
+    "x":24,
+    "y":25,
+    "z":26
+}
+lowercaseValues = {
+    1 : "a",
+    2 : "b",
+    3 : "c",
+    4 : "d",
+    5 : "e",
+    6 : "f",
+    7 : "g",
+    8 : "h",
+    9 : "i",
+    10 : "j",
+    11 : "k",
+    12 : "l",
+    13 : "m",
+    14 : "n",
     "o":15,
     "p":16,
     "q":17,
@@ -72,25 +99,20 @@ others = {
     "?" : 13,
     "," : 14 
 }
-def getVectors(text):
-    text = list(text)
-    chars = []
-    for char in text:
-        data = (0,0)
-        if char.isupper():
-            data = (2, al.uppercaseAlphabet.get(char))
-        elif char.islower():
-            data = (1, al.lowercaseAlphabet.get(char))
-        else:
-            try:
-                data = (3, al.others.get(char))
-            except KeyError:
-                data = (3, 0)
-        chars.append(data)
-    return chars
-
-def combineString(vectors):
-    text = []
-    for char in vectors:
-        if char[0] == 1:
-            text.append(al.lowercaseAlphabet.get(char[1]))
+othersValues = {
+    0 : " ",
+    1 : "1",
+    2 : "2",
+    3 : "3",
+    4 : "4",
+    5 : "5",
+    6 : "6",
+    7 : "7",
+    8 : "8",
+    9 : "9",
+    10 : "0",
+    11 : ".", 
+    12 : "!",
+    13 : "?",
+    14 : "," 
+}
