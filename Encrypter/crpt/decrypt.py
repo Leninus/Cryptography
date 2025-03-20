@@ -1,10 +1,10 @@
 import random as rand
-from pathlib import Path
+import readFile
+
 
 def getText(file):
-    name = Path(file).stem
-    with open(file, "r", encoding="utf-8") as file:
-        text = file.read()
+    text, name = readFile.readFile(file)
+    text = readFile.splitData(text)
     return text, name
 
 def getKey():
@@ -21,28 +21,42 @@ def getKey():
 
 def decrypt(text, seed):
     rand.seed(seed)
+    trace = []
     end = []
     for key in text:
-        key = ord(key)
-        key = key - rand.randint(0,1000)
-        key = chr(key)
+        key = int(key, 16)
+        key = key - rand.randint(0, 255)
+        key = key % 256
+        key = hex(key)
+        print(key)
+        key = key.split("0x")[1]
+        print(key)
+        key = key.zfill(2)
+        print(key)
         end.append(key)
-    return "".join(end) 
+    trace.append(rand.randbytes(15))
+    return end, trace 
    
 def createDecrypted(text, originName = "text", extension = ".txt"):
     fileCreated = False
     tries = ""
     att = 0
+    hexData = []
+    for i in text[0]:
+        print(i)
+        hexData.append(int(str(i),16))
     while not fileCreated:
         try:
-            with open(originName + tries +  "_decoded" + extension, "x") as file:
-             file.write(text)
+            with open(originName + tries +  "_decoded" + extension, "wb") as file:
+                file.write(bytes(hexData))
         except FileExistsError:
             tries = f"({att})"
             att += 1
         else:
             fileCreated = True
             pass
+    with open(originName + "_decrypted.seedTrace", 'w') as file:
+            file.write(str(text[1]))
 
 
 def main():
